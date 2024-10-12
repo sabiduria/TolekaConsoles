@@ -40,7 +40,7 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->setTable('users');
-        $this->setDisplayField('nom');
+        $this->setDisplayField(['prenom', 'nom']);
         $this->setPrimaryKey('id');
 
         $this->hasMany('Affectations', [
