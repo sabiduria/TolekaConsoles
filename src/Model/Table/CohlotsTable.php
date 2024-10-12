@@ -40,7 +40,7 @@ class CohlotsTable extends Table
         parent::initialize($config);
 
         $this->setTable('cohlots');
-        $this->setDisplayField('numlot');
+        $this->setDisplayField('full_details');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Affectations', [

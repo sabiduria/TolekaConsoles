@@ -41,6 +41,10 @@ use Cake\ORM\Entity;
  */
 class Cohlot extends Entity
 {
+    protected function _getFullDetails()
+    {
+        return $this->numlot . '  [' . $this->produit . ' - ' . $this->unite . ' - ' . $this->physicalgrade . ']';
+    }
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
