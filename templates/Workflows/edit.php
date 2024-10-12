@@ -22,12 +22,12 @@
         <div class="workflows form content">
             <?= $this->Form->create($workflow) ?>
             <fieldset>
-                <legend><?= __('Edit Workflow') ?></legend>
+                <legend><?= __('Edit Steps') ?></legend>
                 <?php
                     echo $this->Form->control('status_id', ['options' => $statuses]);
                     echo $this->Form->control('roles_id', ['options' => $roles]);
-                    echo $this->Form->control('steps');
-                    echo $this->Form->control('product');
+                    echo $this->Form->control('steps', ['options'=>[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]]);
+                echo $this->Form->control('product', ['options'=>['all'=>'All', 'Cu'=>'Cu', 'CoH'=>'CoH']]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

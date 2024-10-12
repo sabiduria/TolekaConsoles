@@ -5,7 +5,7 @@
  */
 ?>
 <div class="workflows index content">
-    <?= $this->Html->link(__('New Workflow'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Steps'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Workflows') ?></h3>
     <div class="table-responsive">
         <table>
@@ -47,4 +47,13 @@
         </ul>
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
+
+
+
+
+
+
+
+
+
 </div>

@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property int $mention
  *
  * @property \App\Model\Entity\User[] $user
+ * @property \App\Model\Entity\Workflow[] $workflows
  */
 class Role extends Entity
 {
@@ -34,6 +35,7 @@ class Role extends Entity
         'datemiseajour' => true,
         'statut' => true,
         'mention' => true,
-        'user' => true
+        'user' => true,
+        'workflows' => true,
     ];
 }

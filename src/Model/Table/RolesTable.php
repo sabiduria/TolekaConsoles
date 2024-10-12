@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * Roles Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
+ * @property \App\Model\Table\WorkflowsTable&\Cake\ORM\Association\HasMany $Workflows
  *
  * @method \App\Model\Entity\Role newEmptyEntity()
  * @method \App\Model\Entity\Role newEntity(array $data, array $options = [])
@@ -45,6 +46,9 @@ class RolesTable extends Table
 
         $this->hasMany('Users', [
             'foreignKey' => 'idrole',
+        ]);
+        $this->hasMany('Workflows', [
+            'foreignKey' => 'roles_id',
         ]);
     }
 
