@@ -46,6 +46,9 @@ class RolesController extends AppController
         $role = $this->Roles->newEmptyEntity();
         if ($this->request->is('post')) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
+
+            $role->datemiseajour = date("Y-m-d H:i:s");
+
             if ($this->Roles->save($role)) {
                 $this->Flash->success(__('The role has been saved.'));
 
@@ -68,6 +71,9 @@ class RolesController extends AppController
         $role = $this->Roles->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
+
+            $role->datemiseajour = date("Y-m-d H:i:s");
+
             if ($this->Roles->save($role)) {
                 $this->Flash->success(__('The role has been saved.'));
 

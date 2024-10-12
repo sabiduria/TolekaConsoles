@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Role> $roles
  */
+$number = 1;
 ?>
 <div class="roles index content">
     <?= $this->Html->link(__('New Role'), ['action' => 'add'], ['class' => 'button float-right']) ?>
@@ -11,10 +12,8 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('#') ?></th>
                     <th><?= $this->Paginator->sort('role') ?></th>
-                    <th><?= $this->Paginator->sort('iduser') ?></th>
-                    <th><?= $this->Paginator->sort('datemiseajour') ?></th>
                     <th><?= $this->Paginator->sort('statut') ?></th>
                     <th><?= $this->Paginator->sort('mention') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -23,12 +22,10 @@
             <tbody>
                 <?php foreach ($roles as $role): ?>
                 <tr>
-                    <td><?= $this->Number->format($role->id) ?></td>
+                    <td><?= $number++ ?></td>
                     <td><?= h($role->role) ?></td>
-                    <td><?= $this->Number->format($role->iduser) ?></td>
-                    <td><?= h($role->datemiseajour) ?></td>
                     <td><?= h($role->statut) ?></td>
-                    <td><?= $this->Number->format($role->mention) ?></td>
+                    <td><?= $role->mention?'Special':'Normal' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $role->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $role->id]) ?>

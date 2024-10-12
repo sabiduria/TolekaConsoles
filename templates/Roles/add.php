@@ -17,11 +17,9 @@
             <fieldset>
                 <legend><?= __('Add Role') ?></legend>
                 <?php
-                    echo $this->Form->control('role');
-                    echo $this->Form->control('iduser');
-                    echo $this->Form->control('datemiseajour');
-                    echo $this->Form->control('statut');
-                    echo $this->Form->control('mention');
+                    echo $this->Form->control('role', ['label'=>'Designation']);
+                    echo $this->Form->control('statut', ['options'=>['actif'=>'Actif', 'inactif'=>'Inactif']]);
+                    echo $this->Form->control('mention', ['options'=>['1'=>'Special', '0'=>'Normal']]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
