@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
+ * @var \Cake\Collection\CollectionInterface|string[] $roles
  */
 ?>
 <div class="row">
@@ -22,7 +23,7 @@
             <fieldset>
                 <legend><?= __('Edit User') ?></legend>
                 <?php
-                    echo $this->Form->control('idrole');
+                    echo $this->Form->control('idrole', ['options'=>$roles, 'label'=>'User role']);
                     echo $this->Form->control('username');
                     echo $this->Form->control('password');
                     echo $this->Form->control('email');
@@ -41,7 +42,6 @@
                     echo $this->Form->control('rolead3');
                     echo $this->Form->control('section');
                     echo $this->Form->control('langue');
-                    echo $this->Form->control('synced');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

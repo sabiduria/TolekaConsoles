@@ -14,6 +14,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime $datemiseajour
  * @property string $statut
  * @property int $mention
+ *
+ * @property \App\Model\Entity\User[] $user
  */
 class Role extends Entity
 {
@@ -32,5 +34,6 @@ class Role extends Entity
         'datemiseajour' => true,
         'statut' => true,
         'mention' => true,
+        'user' => true
     ];
 }

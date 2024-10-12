@@ -31,6 +31,7 @@ use Cake\ORM\Entity;
  * @property bool $synced
  *
  * @property \App\Model\Entity\Affectation[] $affectations
+ * @property \App\Model\Entity\Role $role
  */
 class User extends Entity
 {
@@ -65,6 +66,7 @@ class User extends Entity
         'langue' => true,
         'synced' => true,
         'affectations' => true,
+        'role' => true
     ];
 
     /**

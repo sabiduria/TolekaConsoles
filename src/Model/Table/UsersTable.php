@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\AffectationsTable&\Cake\ORM\Association\HasMany $Affectations
+ * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsTo $Roles
  *
  * @method \App\Model\Entity\User newEmptyEntity()
  * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
@@ -45,6 +46,11 @@ class UsersTable extends Table
 
         $this->hasMany('Affectations', [
             'foreignKey' => 'user_id',
+        ]);
+
+        $this->belongsTo('Roles', [
+            'foreignKey' => 'idrole',
+            'joinType' => 'INNER',
         ]);
     }
 
