@@ -12,6 +12,8 @@ use Cake\Validation\Validator;
  * Affectations Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\CohlotsTable&\Cake\ORM\Association\BelongsTo $Cohlots
+ * @property \App\Model\Table\StatusesTable&\Cake\ORM\Association\BelongsTo $Statuses
  *
  * @method \App\Model\Entity\Affectation newEmptyEntity()
  * @method \App\Model\Entity\Affectation newEntity(array $data, array $options = [])
@@ -49,6 +51,14 @@ class AffectationsTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Cohlots', [
+            'foreignKey' => 'batch_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Statuses', [
+            'foreignKey' => 'state',
             'joinType' => 'INNER',
         ]);
     }

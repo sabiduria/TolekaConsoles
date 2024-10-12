@@ -15,13 +15,20 @@ class AffectationsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index()
+    public function index($user=null)
     {
+        $this->add();
+        $session = $this->request->getSession();
         $query = $this->Affectations->find()
-            ->contain(['Users']);
+            ->contain(['Users', 'Cohlots', 'Statuses']);
         $affectations = $this->paginate($query);
 
-        $this->set(compact('affectations'));
+        if ($user!=null)
+            $session->write('username', $user);
+
+        $username = $session->read('username');
+
+        $this->set(compact('affectations', 'username'));
     }
 
     /**
@@ -33,7 +40,7 @@ class AffectationsController extends AppController
      */
     public function view($id = null)
     {
-        $affectation = $this->Affectations->get($id, contain: ['Users']);
+        $affectation = $this->Affectations->get($id, contain: ['Users', 'Cohlots', 'Statuses']);
         $this->set(compact('affectation'));
     }
 
@@ -44,9 +51,17 @@ class AffectationsController extends AppController
      */
     public function add()
     {
+        $session = $this->request->getSession();
         $affectation = $this->Affectations->newEmptyEntity();
         if ($this->request->is('post')) {
             $affectation = $this->Affectations->patchEntity($affectation, $this->request->getData());
+
+            $affectation->createdby = $session->read('username');
+            $affectation->modifiedby = $session->read('username');
+            $affectation->state = 1;
+            $affectation->synced = 0;
+            $affectation->deleted = 0;
+
             if ($this->Affectations->save($affectation)) {
                 $this->Flash->success(__('The affectation has been saved.'));
 
@@ -54,8 +69,12 @@ class AffectationsController extends AppController
             }
             $this->Flash->error(__('The affectation could not be saved. Please, try again.'));
         }
+        $subquery = $this->Affectations->find()->select(['batch_id']);
+
         $users = $this->Affectations->Users->find('list', limit: 200)->all();
-        $this->set(compact('affectation', 'users'));
+        $cohlots = $this->Affectations->Cohlots->find('list', limit: 200)->where(['Cohlots.id NOT IN' => $subquery])->all();
+        $statuses = $this->Affectations->Statuses->find('list', limit: 200)->all();
+        $this->set(compact('affectation', 'users', 'cohlots', 'statuses'));
     }
 
     /**
@@ -67,9 +86,13 @@ class AffectationsController extends AppController
      */
     public function edit($id = null)
     {
+        $session = $this->request->getSession();
         $affectation = $this->Affectations->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $affectation = $this->Affectations->patchEntity($affectation, $this->request->getData());
+
+            $affectation->modifiedby = $session->read('username');
+
             if ($this->Affectations->save($affectation)) {
                 $this->Flash->success(__('The affectation has been saved.'));
 
@@ -78,7 +101,9 @@ class AffectationsController extends AppController
             $this->Flash->error(__('The affectation could not be saved. Please, try again.'));
         }
         $users = $this->Affectations->Users->find('list', limit: 200)->all();
-        $this->set(compact('affectation', 'users'));
+        $cohlots = $this->Affectations->Cohlots->find('list', limit: 200)->all();
+        $statuses = $this->Affectations->Statuses->find('list', limit: 200)->all();
+        $this->set(compact('affectation', 'users', 'cohlots', 'statuses'));
     }
 
     /**

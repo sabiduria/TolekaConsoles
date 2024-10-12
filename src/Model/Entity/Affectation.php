@@ -21,6 +21,8 @@ use Cake\ORM\Entity;
  * @property bool|null $deleted
  *
  * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Cohlot $cohlot
+ * @property \App\Model\Entity\Status $status
  */
 class Affectation extends Entity
 {
@@ -45,5 +47,7 @@ class Affectation extends Entity
         'modifiedby' => true,
         'deleted' => true,
         'user' => true,
+        'cohlot' => true,
+        'status' => true,
     ];
 }

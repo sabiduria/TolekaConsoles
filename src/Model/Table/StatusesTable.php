@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * Statuses Model
  *
  * @property \App\Model\Table\WorkflowsTable&\Cake\ORM\Association\HasMany $Workflows
+ * @property \App\Model\Table\AffectationsTable&\Cake\ORM\Association\HasMany $Affectations
  *
  * @method \App\Model\Entity\Status newEmptyEntity()
  * @method \App\Model\Entity\Status newEntity(array $data, array $options = [])
@@ -49,6 +50,10 @@ class StatusesTable extends Table
 
         $this->hasMany('Workflows', [
             'foreignKey' => 'status_id',
+        ]);
+
+        $this->hasMany('Affectations', [
+            'foreignKey' => 'state',
         ]);
     }
 

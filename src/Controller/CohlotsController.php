@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Datasource\ConnectionManager;
+
 /**
  * Cohlots Controller
  *
@@ -96,5 +98,38 @@ class CohlotsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public static function getCurrentBatchWeight($batch_id, $product) : float
+    {
+        $conditions = ['lotnumber' => $batch_id];
+        $table = $product=="Cu" ? "Cubundle" : "Cohbags";
+        $field = $product=="Cu" ? "netweight" : "poids";
+
+        $connection = ConnectionManager::get('default');
+        $query = $connection->selectQuery();
+        $sum = $query->select(['total' => $query->func()->sum($field)])
+            ->from($table)
+            ->where($conditions)
+            ->execute()
+            ->fetch('assoc');
+
+        return $sum['total']??0;
+    }
+
+    public static function getPacketNumber($batch_id, $product) : int
+    {
+        $conditions = ['lotnumber' => $batch_id];
+        $table = $product=="Cu" ? "Cubundle" : "Cohbags";
+
+        $connection = ConnectionManager::get('default');
+        $query = $connection->selectQuery();
+        $count = $query->select(['count' => $query->func()->count('*')])
+            ->from($table)
+            ->where($conditions)
+            ->execute()
+            ->fetch('assoc');
+
+        return $count['count'];
     }
 }

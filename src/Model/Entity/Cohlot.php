@@ -36,6 +36,8 @@ use Cake\ORM\Entity;
  * @property int $year
  * @property string $sealsecurite
  * @property bool $synced
+ *
+ * @property \App\Model\Entity\Affectation[] $affectations
  */
 class Cohlot extends Entity
 {
@@ -76,5 +78,6 @@ class Cohlot extends Entity
         'year' => true,
         'sealsecurite' => true,
         'synced' => true,
+        'affectations' => true,
     ];
 }

@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Cohlots Model
  *
+ * @property \App\Model\Table\AffectationsTable&\Cake\ORM\Association\HasMany $Affectations
+ *
  * @method \App\Model\Entity\Cohlot newEmptyEntity()
  * @method \App\Model\Entity\Cohlot newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\Cohlot> newEntities(array $data, array $options = [])
@@ -40,6 +42,10 @@ class CohlotsTable extends Table
         $this->setTable('cohlots');
         $this->setDisplayField('numlot');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('Affectations', [
+            'foreignKey' => 'batch_id',
+        ]);
     }
 
     /**

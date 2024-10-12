@@ -17,6 +17,7 @@ use Cake\ORM\Entity;
  * @property bool $deleted
  *
  * @property \App\Model\Entity\Workflow[] $workflows
+ * @property \App\Model\Entity\Affectation[] $affectations
  */
 class Status extends Entity
 {
@@ -37,5 +38,6 @@ class Status extends Entity
         'modifiedby' => true,
         'deleted' => true,
         'workflows' => true,
+        'affectations' => true,
     ];
 }

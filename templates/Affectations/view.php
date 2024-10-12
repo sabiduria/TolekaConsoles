@@ -16,51 +16,35 @@
     </aside>
     <div class="column column-80">
         <div class="affectations view content">
-            <h3><?= h($affectation->id) ?></h3>
+            <h3>Affectation of Batch #<?= h($affectation->cohlot->numlot) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('User') ?></th>
-                    <td><?= $affectation->hasValue('user') ? $this->Html->link($affectation->user->nom, ['controller' => 'Users', 'action' => 'view', $affectation->user->id]) : '' ?></td>
+                    <th><?= __('Affected to') ?></th>
+                    <td><?= $affectation->user->prenom.' '.$affectation->user->nom ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Createdby') ?></th>
+                    <th><?= __('Created by') ?></th>
                     <td><?= h($affectation->createdby) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Modifiedby') ?></th>
+                    <th><?= __('Modified by') ?></th>
                     <td><?= h($affectation->modifiedby) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($affectation->id) ?></td>
+                    <th><?= __('Batch Reference') ?></th>
+                    <td><?= $affectation->cohlot->numlot ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Batch Id') ?></th>
-                    <td><?= $this->Number->format($affectation->batch_id) ?></td>
+                    <th><?= __('Current Status') ?></th>
+                    <td><?= $affectation->status->name ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('State') ?></th>
-                    <td><?= $this->Number->format($affectation->state) ?></td>
+                    <th><?= __('Created Date') ?></th>
+                    <td><?= date('Y-m-d', strtotime($affectation->created)) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($affectation->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($affectation->modified) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Synced') ?></th>
-                    <td><?= $affectation->synced ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Isactive') ?></th>
-                    <td><?= $affectation->isactive ? __('Yes') : __('No'); ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Deleted') ?></th>
-                    <td><?= $affectation->deleted ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Modified Date') ?></th>
+                    <td><?= date('Y-m-d', strtotime($affectation->modified)) ?></td>
                 </tr>
             </table>
         </div>

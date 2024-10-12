@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Affectation $affectation
  * @var string[]|\Cake\Collection\CollectionInterface $users
+ * @var \Cake\Collection\CollectionInterface|string[] $cohlots
+ * @var \Cake\Collection\CollectionInterface|string[] $statuses
  */
 ?>
 <div class="row">
@@ -23,14 +25,9 @@
             <fieldset>
                 <legend><?= __('Edit Affectation') ?></legend>
                 <?php
-                    echo $this->Form->control('user_id', ['options' => $users]);
-                    echo $this->Form->control('batch_id');
-                    echo $this->Form->control('state');
-                    echo $this->Form->control('synced');
-                    echo $this->Form->control('isactive');
-                    echo $this->Form->control('createdby');
-                    echo $this->Form->control('modifiedby');
-                    echo $this->Form->control('deleted');
+                echo $this->Form->control('user_id', ['options' => $users]);
+                echo $this->Form->control('batch_id', ['options' => $cohlots]);
+                echo $this->Form->control('state', ['options' => $statuses]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
