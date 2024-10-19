@@ -8,23 +8,22 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Affectations'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
     <div class="column column-80">
         <div class="affectations form content">
             <?= $this->Form->create($affectation) ?>
-            <fieldset>
-                <legend><?= __('Add Affectation') ?></legend>
-                <?php
-                    echo $this->Form->control('user_id', ['options' => $users]);
-                    echo $this->Form->control('batch_id', ['options' => $cohlots]);
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $this->Form->control('user_id', ['options' => $users, 'class'=>'select2 form-control mb-3 custom-select']); ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $this->Form->control('batch_id', ['options' => $cohlots, 'class'=>'select2 form-control mb-3 custom-select']); ?>
+                    </div>
+                </div>
+            </div>
+            <?= $this->Form->button(__('Submit'), ['class'=>'btn btn-success']) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

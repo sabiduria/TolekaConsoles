@@ -10,27 +10,25 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $affectation->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $affectation->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Affectations'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <h3 class="heading"><?= __('Edit Affectations') ?></h3>
         </div>
     </aside>
     <div class="column column-80">
         <div class="affectations form content">
             <?= $this->Form->create($affectation) ?>
-            <fieldset>
-                <legend><?= __('Edit Affectation') ?></legend>
-                <?php
-                echo $this->Form->control('user_id', ['options' => $users]);
-                echo $this->Form->control('batch_id', ['options' => $cohlots]);
-                echo $this->Form->control('state', ['options' => $statuses]);
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $this->Form->control('user_id', ['options' => $users, 'class'=>'select2 form-control mb-3 custom-select']); ?>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $this->Form->control('batch_id', ['options' => $cohlots, 'class'=>'select2 form-control mb-3 custom-select']); ?>
+                    </div>
+                </div>
+            </div>
+            <?= $this->Form->button(__('Submit'), ['class'=>'btn btn-success']) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

@@ -1,8 +1,11 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Affectation $affectation
  * @var iterable<\App\Model\Entity\Affectation> $affectations
  * @var iterable<\App\Model\Entity\Affectation> $username
+ * @var \Cake\Collection\CollectionInterface|string[] $users
+ * @var \Cake\Collection\CollectionInterface|string[] $cohlots
  */
 
 use App\Controller\CohlotsController;
@@ -14,16 +17,24 @@ $count = 1;
 
     <div class="affectations form">
         <?= $this->Form->create($affectation) ?>
-        <?php
-        echo $this->Form->control('user_id', ['options' => $users]);
-        echo $this->Form->control('batch_id', ['options' => $cohlots]);
-        ?>
-        <?= $this->Form->button(__('Submit')) ?>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $this->Form->control('user_id', ['options' => $users, 'class'=>'select2 form-control mb-3 custom-select']); ?>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $this->Form->control('batch_id', ['options' => $cohlots, 'class'=>'select2 form-control mb-3 custom-select']); ?>
+                </div>
+            </div>
+        </div>
+        <?= $this->Form->button(__('Submit'), ['class'=>'btn btn-success']) ?>
         <?= $this->Form->end() ?>
     </div>
     <hr>
     <div class="table-responsive">
-        <table>
+        <table class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" id="datatable-buttons">
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('#') ?></th>
@@ -58,23 +69,13 @@ $count = 1;
                     <td><?= CohlotsController::getCurrentBatchWeight($batch_id, $product) ?></td>
                     <td><?= $affectation->status->name ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $affectation->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $affectation->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $affectation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $affectation->id)]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $affectation->id], ['class'=>'btn btn-success btn-sm']) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $affectation->id], ['class'=>'btn btn-primary btn-sm']) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $affectation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $affectation->id), 'class'=>'btn btn-danger btn-sm']) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>

@@ -15,7 +15,8 @@
  */
 
 $AppDescription = 'Toleka Console';
-$company = 'Solutic Tech'
+$company = 'Solutic Tech';
+$session = $this->request->getSession();
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,14 @@ $company = 'Solutic Tech'
     <!-- App css -->
     <?= $this->Html->css(['bootstrap.min', 'icons.min', 'metisMenu.min', 'app.min',
         'datatables/dataTables.bootstrap5.min', 'datatables/buttons.bootstrap5.min', 'datatables/responsive.bootstrap4.min',
-        'daterangepicker/daterangepicker']) ?>
+        'daterangepicker/daterangepicker', 'select2/select2.min']) ?>
+
+    <style>
+        .select2-container .select2-selection--single{
+            height: 33.1px !important;
+            border: 1px solid #e3ebf6;
+        }
+    </style>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -81,7 +89,9 @@ $company = 'Solutic Tech'
                 <li class="dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"
                        aria-haspopup="false" aria-expanded="false">
-                        <span class="ms-1 nav-user-name hidden-sm">Username</span>
+                        <span class="ms-1 nav-user-name hidden-sm">
+                            Hello <?= ucfirst($session->read('username')); ?>
+                        </span>
                         <?= $this->Html->image('avatar.png', ['class'=>'rounded-circle thumb-xs', 'alt'=>'profile-user']) ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
@@ -132,7 +142,7 @@ $company = 'Solutic Tech'
         'datatables/buttons.bootstrap5.min', 'datatables/jszip.min', 'datatables/pdfmake.min', 'datatables/vfs_fonts',
         'datatables/buttons.html5.min', 'datatables/buttons.print.min', 'datatables/buttons.colVis.min',
         'datatables/dataTables.responsive.min', 'datatables/responsive.bootstrap4.min', 'jquery.datatable.init',
-        'app']) ?>
+        'app', 'select2/select2.min', 'jquery.forms-advanced']) ?>
 
 </body>
 </html>

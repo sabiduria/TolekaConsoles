@@ -8,16 +8,14 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Affectation'), ['action' => 'edit', $affectation->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Affectation'), ['action' => 'delete', $affectation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $affectation->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Affectations'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Affectation'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Edit Affectation'), ['action' => 'edit', $affectation->id], ['class' => 'btn btn-success btn-sm']) ?>
+            <?= $this->Form->postLink(__('Delete Affectation'), ['action' => 'delete', $affectation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $affectation->id), 'class' => 'btn btn-danger btn-sm']) ?>
         </div>
     </aside>
     <div class="column column-80">
         <div class="affectations view content">
             <h3>Affectation of Batch #<?= h($affectation->cohlot->numlot) ?></h3>
-            <table>
+            <table class="table">
                 <tr>
                     <th><?= __('Affected to') ?></th>
                     <td><?= $affectation->user->prenom.' '.$affectation->user->nom ?></td>
