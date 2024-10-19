@@ -18,28 +18,29 @@
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
                 <?php
-                    echo $this->Form->control('idrole', ['options'=>$roles, 'label'=>'User role']);
-                    echo $this->Form->control('username');
-                    echo $this->Form->control('password');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('avatar');
-                    echo $this->Form->control('prenom');
-                    echo $this->Form->control('nom');
-                    echo $this->Form->control('telephone');
-                    echo $this->Form->control('statut');
-                    echo $this->Form->control('dateinscription');
-                    echo $this->Form->control('iduser');
-                    echo $this->Form->control('datemiseajour');
-                    echo $this->Form->control('sexe');
-                    echo $this->Form->control('codeuser');
-                    echo $this->Form->control('rolead1');
-                    echo $this->Form->control('rolead2');
-                    echo $this->Form->control('rolead3');
-                    echo $this->Form->control('section');
-                    echo $this->Form->control('langue');
+                    echo $this->Form->control('idrole', ['options'=>$roles, 'label'=>'User role', 'class'=>'select2 form-control mb-3 custom-select']);
+                    echo $this->Form->control('username', ['class'=>'form-control']);
+                    echo $this->Form->control('password', ['class'=>'form-control']);
+                    echo $this->Form->control('email', ['class'=>'form-control']);
+                    echo $this->Form->control('avatar', ['class'=>'form-control']);
+                    echo $this->Form->control('prenom', ['class'=>'form-control']);
+                    echo $this->Form->control('nom', ['class'=>'form-control']);
+                    echo $this->Form->control('telephone', ['class'=>'form-control']);
+                    echo $this->Form->control('statut', ['class'=>'form-select', 'options'=>['actif'=>'Actif', 'inactif'=>'Inactif']]);
+                    echo $this->Form->control('dateinscription', ['class'=>'form-control']);
+                    echo $this->Form->control('iduser', ['class'=>'form-control']);
+                    echo $this->Form->control('datemiseajour', ['class'=>'form-control']);
+                    echo $this->Form->control('sexe', ['class'=>'form-select', 'options'=>['Homme', 'Femme']]);
+                    echo $this->Form->control('codeuser', ['class'=>'form-control']);
+                    echo $this->Form->control('rolead1', ['class'=>'form-control']);
+                    echo $this->Form->control('rolead2', ['class'=>'form-control']);
+                    echo $this->Form->control('rolead3', ['class'=>'form-control']);
+                    echo $this->Form->control('section', ['class'=>'form-control']);
+                    echo $this->Form->control('langue', ['class'=>'form-control']);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <hr>
+            <?= $this->Form->button(__('Submit'), ['class'=>'btn btn-success']) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
