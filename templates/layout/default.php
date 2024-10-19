@@ -144,5 +144,9 @@ $session = $this->request->getSession();
         'datatables/dataTables.responsive.min', 'datatables/responsive.bootstrap4.min', 'jquery.datatable.init',
         'app', 'select2/select2.min', 'jquery.forms-advanced']) ?>
 
+<script>
+    $('#myTable').DataTable();
+</script>
+
 </body>
 </html>
